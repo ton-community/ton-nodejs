@@ -10,12 +10,10 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "./build.sh",
+    "build": "rm -fr dist && tsc --declaration",
     "release": "yarn build && yarn test && yarn publish"
   },
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "peerDependencies": {
     "ton": ">=11.14.0",
     "ton-contract-executor": ">=0.5.0"
