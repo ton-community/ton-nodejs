@@ -150,7 +150,7 @@ export class ContractExecutor {
         }
 
         // Persist data, code and LT
-        if (name !== 'recv_external' && name !== 'recv_internal') {
+        if (name === 'recv_external' || name === 'recv_internal') {
             if (result.data_cell) {
                 this.#data = Cell.fromBoc(Buffer.from(result.data_cell, 'base64'))[0];
             }
@@ -159,7 +159,7 @@ export class ContractExecutor {
                     this.#code = a.newCode;
                 }
             }
-            this.#accountLt.addn(1);
+            this.#accountLt = this.#accountLt.addn(1);
         }
 
         return {
