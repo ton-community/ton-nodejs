@@ -78,7 +78,6 @@ export class ContractExecutor {
         let convertedStack = convertToExecutorStack(stack);
 
         // Configure
-        let now = Math.floor(Date.now() / 1000);
         let balance = makeTuple([makeIntEntry(this.#balance), makeNull()]);
         let addressCell = new Cell();
         addressCell.bits.writeAddress(this.#address);
@@ -104,7 +103,7 @@ export class ContractExecutor {
                 // msgs_sent:Integer
                 makeIntEntry(0),
                 // unixtime:Integer
-                makeIntEntry(now),
+                makeIntEntry(this.#now),
                 // block_lt:Integer
                 makeIntEntry(this.#blockLt),
                 // trans_lt:Integer
