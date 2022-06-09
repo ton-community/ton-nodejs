@@ -1,6 +1,6 @@
 {
   "name": "ton-nodejs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "dist/index.js",
   "repository": "https://github.com/ton-foundation/ton-nodejs.git",
   "author": "Steve Korshakov <steve@korshakov.com>",
