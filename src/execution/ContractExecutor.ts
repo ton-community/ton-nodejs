@@ -230,4 +230,16 @@ export class ContractExecutor {
             actions: result.actions
         };
     }
+
+    clone() {
+        return new ContractExecutor({
+            code: this.#code,
+            data: this.data,
+            balance: this.#balance,
+            config: this.#config,
+            address: this.#address,
+            now: this.#now,
+            lt: this.#blockLt
+        });
+    }
 }
