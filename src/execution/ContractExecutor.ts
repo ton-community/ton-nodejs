@@ -192,7 +192,7 @@ export class ContractExecutor {
 
         // Execute
         let result = await this.execute('recv_internal', [
-            { type: 'int', value: this.#balance },
+            { type: 'int', value: this.#balance.add(msg.value) },
             { type: 'int', value: msg.value },
             { type: 'cell', cell: msgCell },
             { type: 'slice', cell: bodyCell }
