@@ -11,6 +11,20 @@ const makeCell = (cell: Cell): TVMStackEntryCell => ({ type: 'cell', value: cell
 const makeSlice = (cell: Cell): TVMStackEntryCellSlice => ({ type: 'cell_slice', value: cell.toBoc({ idx: false }).toString('base64') });
 const decodeLogs = (logs: string) => Buffer.from(logs, 'base64').toString();
 
+export class ExecuteError extends Error {
+    exitCode: number;
+    debugLogs: string;
+    logs: string;
+
+    constructor(message: string, exitCode: number, debugLogs: string, logs: string) {
+        super(message);
+        this.exitCode = exitCode;
+        this.debugLogs = debugLogs;
+        this.logs = logs;
+        Object.setPrototypeOf(this, ExecuteError.prototype);
+    }
+}
+
 export class ContractExecutor {
 
     #code: Cell;
@@ -134,7 +148,7 @@ export class ContractExecutor {
 
         // Process results
         if (!result.ok) {
-            throw Error('Exit code: ' + result.exit_code);
+            throw new ExecuteError('Exit code: ' + result.exit_code, result.exit_code || -1, result.debugLogs.join('\n'), result.logs || '');
         }
 
         // Resolve result
