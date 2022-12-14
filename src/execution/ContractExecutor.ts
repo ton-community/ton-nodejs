@@ -177,6 +177,7 @@ export class ContractExecutor {
 
         return {
             result: resultStack,
+            debugLogs: result.debugLogs.join('\n'),
             gasConsumed,
             logs,
             actions
@@ -187,6 +188,7 @@ export class ContractExecutor {
         let result = await this.execute(name, stack ? stack : [], opts);
         return {
             logs: result.logs,
+            debugLogs: result.debugLogs,
             gasConsumed: result.gasConsumed,
             stack: new TupleSlice4(result.result),
             stackRaw: result.result
@@ -214,6 +216,7 @@ export class ContractExecutor {
 
         return {
             logs: result.logs,
+            debugLogs: result.debugLogs,
             gasConsumed: result.gasConsumed,
             actions: result.actions
         };
@@ -240,6 +243,7 @@ export class ContractExecutor {
 
         return {
             logs: result.logs,
+            debugLogs: result.debugLogs,
             gasConsumed: result.gasConsumed,
             actions: result.actions
         };
